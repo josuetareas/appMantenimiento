@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.example.appproformamantenimiento"
-    compileSdk = 34
+    compileSdk = 35 // <-- Cambiado de 34 a 35
 
     defaultConfig {
         applicationId = "com.example.appproformamantenimiento"
@@ -32,11 +32,11 @@ android {
 }
 
 dependencies {
-
-    implementation("androidx.appcompat:appcompat:1.8.0")
-    implementation("com.google.android.material:material:1.14.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.2.2")
+    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.2.0")
+    implementation("androidx.activity:activity:1.9.0")
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.3.0")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 }
