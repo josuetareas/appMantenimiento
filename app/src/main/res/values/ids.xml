@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="txtcodigo" type="id" />
+    <item name="txtProducto" type="id" />
+    <item name="txtPrecio" type="id" />
+    <item name="txtCantidad" type="id" />
+    <item name="txtResultado" type="id" />
+    <item name="btnNuevo" type="id" />
+    <item name="btnGrabar" type="id" />
+    <item name="btnEditar" type="id" />
+    <item name="btnEliminar" type="id" />
+    <item name="listProforma" type="id" />
+</resources>
