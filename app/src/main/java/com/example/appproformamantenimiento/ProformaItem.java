@@ -6,7 +6,6 @@ public class ProformaItem {
     private double precio;
     private int cantidad;
 
-    // Constructor
     public ProformaItem(String codigo, String producto, double precio, int cantidad) {
         setCodigo(codigo);
         setProducto(producto);
@@ -30,26 +29,20 @@ public class ProformaItem {
         return cantidad;
     }
 
-    // Código: máximo 6 caracteres
     public void setCodigo(String codigo) {
         if (codigo != null && codigo.length() > 6) {
-            throw new IllegalArgumentException(
-                    "Error: el código no puede tener más de 6 caracteres."
-            );
+            this.codigo = codigo.substring(0, 6);
+        } else {
+            this.codigo = codigo;
         }
-
-        this.codigo = codigo;
     }
 
-    // Producto: máximo 40 caracteres
     public void setProducto(String producto) {
         if (producto != null && producto.length() > 40) {
-            throw new IllegalArgumentException(
-                    "Error: el producto no puede tener más de 40 caracteres."
-            );
+            this.producto = producto.substring(0, 40);
+        } else {
+            this.producto = producto;
         }
-
-        this.producto = producto;
     }
 
     public void setPrecio(double precio) {

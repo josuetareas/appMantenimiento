@@ -1,7 +1,7 @@
 package com.example.appproformamantenimiento;
 
 import android.os.Bundle;
-import androidx.activity.EdgeToEdge;<
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -59,17 +59,32 @@ public class MainActivity extends AppCompatActivity {
 
         // Grabar
         btnGrabar.setOnClickListener(v -> {
-            String dni = txtcodigo.getText().toString();
-            String prod = txtProducto.getText().toString();
-            double precio = Double.parseDouble(txtPrecio.getText().toString());
-            int cant = Integer.parseInt(txtCantidad.getText().toString());
+            try {
+                String dni = txtcodigo.getText().toString().trim();
+                String prod = txtProducto.getText().toString().trim();
+                String precioStr = txtPrecio.getText().toString().trim();
+                String cantStr = txtCantidad.getText().toString().trim();
 
-            //Operacion Aritmetica
-            double total = precio * cant;
-            txtResultado.setText("Total: S/. " + total);
-            lista.add(new ProformaItem(dni, prod, precio, cant));
-            adaptador.notifyDataSetChanged();
-            limpiarCampos();
+                // Validar que no haya campos vacíos
+                if (dni.isEmpty() || prod.isEmpty() || precioStr.isEmpty() || cantStr.isEmpty()) {
+                    android.widget.Toast.makeText(this, "Por favor complete todos los campos", android.widget.Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                double precio = Double.parseDouble(precioStr);
+                int cant = Integer.parseInt(cantStr);
+
+                double total = precio * cant;
+                txtResultado.setText("Total: S/. " + total);
+
+                lista.add(new ProformaItem(dni, prod, precio, cant));
+                adaptador.notifyDataSetChanged();
+                limpiarCampos();
+            } catch (IllegalArgumentException e) {
+                android.widget.Toast.makeText(this, e.getMessage(), android.widget.Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                android.widget.Toast.makeText(this, "Error al procesar los datos", android.widget.Toast.LENGTH_SHORT).show();
+            }
         });
 
         // Seleccionar item
@@ -88,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         btnEditar.setOnClickListener(v -> {
             if (posicionSeleccionada != -1) {
                 ProformaItem item = lista.get(posicionSeleccionada);
+                item.setCodigo(txtcodigo.getText().toString()); // <- Faltaba esta línea
                 item.setProducto(txtProducto.getText().toString());
                 item.setPrecio(Double.parseDouble(txtPrecio.getText().toString()));
                 item.setCantidad(Integer.parseInt(txtCantidad.getText().toString()));

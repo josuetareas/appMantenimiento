@@ -2,50 +2,234 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
+    android:background="?android:attr/colorBackground"
     tools:context=".MainActivity">
 
-    <!-- Título principal -->
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="¡Hola amigos!"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/holo_blue_dark"
-        app:layout_constraintBottom_toTopOf="@+id/etName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="12dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="?attr/colorSurface"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <!-- Campo de texto para ingresar datos -->
-    <EditText
-        android:id="@+id/etName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:hint="Escribe tu nombre aquí"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAction"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
-
-    <!-- Botón de acción -->
-    <Button
-        android:id="@+id/btnAction"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Continuar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etName" />
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Encabezado con Ícono y Título -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <ImageView
+                    android:id="@+id/iconoEtiqueta"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/nuevo"
+                    android:contentDescription="icono"
+                    android:layout_marginEnd="12dp"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txtTitulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Proforma de Ventas"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    android:textColor="?attr/colorPrimary"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Formulario de entrada de datos -->
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:hint="Código"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtcodigo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLength="6"
+                            android:inputType="textNoSuggestions|textVisiblePassword"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:hint="Producto"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtProducto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLength="40"
+                            android:inputType="textNoSuggestions|textVisiblePassword"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Precio y Cantidad Juntos en horizontal -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:baselineAligned="false"
+                        android:layout_marginBottom="12dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            android:hint="Precio"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtPrecio"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="numberDecimal"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:hint="Cantidad"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtCantidad"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <!-- Resultado Destacado -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="?attr/colorSecondaryContainer"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:gravity="end|center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/txtResultado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total: S/. 0.00"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="?attr/colorOnSecondaryContainer" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Botones alineados y ajustados -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="12dp"
+                android:weightSum="4">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNuevo"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:textSize="11sp"
+                    android:text="Nuevo"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnGrabar"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:textSize="11sp"
+                    android:text="Agregar"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEditar"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:textSize="11sp"
+                    android:text="Actua."/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEliminar"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="?attr/colorError"
+                    app:strokeColor="?attr/colorError"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:textSize="11sp"
+                    android:text="Eliminar"/>
+            </LinearLayout>
+
+            <!-- Listado -->
+            <ListView
+                android:id="@+id/listProforma"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:divider="?android:attr/listDivider"
+                android:dividerHeight="1dp"
+                android:scrollbars="vertical"/>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
